@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>科隆 9 天 8 晚 · 沉船潜水手册</title>
+<style>
+:root{
+  --ink:#0d3b40; --time:#5f7d85; --teal:#12657c; --price:#8a6a3b;
+  --warn:#b23b3b; --meta:#7a8a8d; --mark:#f3ead6;
+  --paper:#f6f4ee; --card:#fffdf9; --line:rgba(13,59,64,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{
+  background:var(--paper); color:#22383c;
+  font-family:PingFang SC,"Microsoft YaHei",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+  font-size:15px; line-height:1.72; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:Georgia,"Songti SC","Noto Serif SC",serif;color:var(--ink);line-height:1.3}
+a{color:var(--teal)}
+
+/* ── 顶部导航 ── */
+.topnav{
+  position:sticky;top:0;z-index:50;background:rgba(246,244,238,.94);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+}
+.topnav-in{max-width:720px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;
+  padding:8px 12px;scrollbar-width:none}
+.topnav-in::-webkit-scrollbar{display:none}
+.topnav a{
+  flex:0 0 auto;font-size:13px;color:var(--ink);text-decoration:none;
+  padding:7px 11px;border-radius:999px;white-space:nowrap;transition:background .18s;
+}
+.topnav a:hover{background:rgba(18,101,124,.09)}
+.topnav a.on{background:var(--teal);color:#fff}
+
+/* ── 封面 ── */
+.cover{position:relative;height:400px;overflow:hidden;background:#0d3b40}
+.cover img{width:100%;height:100%;object-fit:cover;opacity:.5}
+.cover-in{
+  position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+  max-width:720px;margin:0 auto;padding:30px 22px 34px;color:#fff;
+}
+.cover-kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:#8fd4dd;margin-bottom:10px}
+.cover h1{color:#fff;font-size:37px;letter-spacing:.01em;margin-bottom:12px}
+.cover-sub{font-size:14px;color:#cfe6e9;margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{
+  font-size:12px;padding:5px 11px;border-radius:999px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);color:#fff;
+}
+
+/* ── 布局 ── */
+.wrap{max-width:720px;margin:0 auto;padding:0 22px}
+section{padding:46px 0 8px}
+.sec-num{font-size:11px;letter-spacing:.2em;color:var(--meta);font-weight:600}
+.sec-h{font-size:25px;margin:6px 0 8px}
+.sec-intro{color:#4c666b;font-size:14.5px;margin-bottom:22px}
+.hr{height:1px;background:var(--line);margin:34px 0 0}
+
+/* ── 卡片 ── */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:16px 16px 14px;margin-bottom:16px;overflow:hidden;
+}
+.card .card-img-wrap{margin:-16px -16px 14px}
+.card-img{width:100%;height:168px;object-fit:cover;display:block}
+.card-h{font-size:16.5px;color:var(--ink);font-weight:700;margin-bottom:2px}
+.card-local{font-size:12.5px;color:var(--meta);font-weight:400;margin-left:6px}
+.card-p{font-size:14px;color:#3d585d;margin-top:7px}
+.card-p.tight{margin-top:4px}
+.meta-row{margin-top:7px;font-size:13px;color:var(--meta)}
+
+/* 语义标注 */
+.t{color:var(--time)}
+.price{color:var(--price);font-weight:600}
+.tag{
+  display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:5px;
+  background:rgba(18,101,124,.09);color:var(--teal);margin-right:5px;
+}
+.tag.warn{background:rgba(178,59,59,.10);color:var(--warn)}
+.tag.gold{background:rgba(138,106,59,.11);color:var(--price)}
+.lnk{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
+.warn{color:var(--warn)}
+.mark{background:var(--mark);padding:1px 4px;border-radius:3px}
+.icon{color:var(--time);font-style:normal}
+
+/* 导航按钮 */
+.nav-btn{
+  display:inline-flex;align-items:center;gap:4px;min-height:30px;
+  font-size:12.5px;padding:5px 12px;border-radius:7px;cursor:pointer;
+  background:var(--teal);color:#fff;border:none;font-family:inherit;margin-left:8px;
+}
+.nav-btn:active{opacity:.8}
+
+/* 行程日卡 */
+.day{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  overflow:hidden;margin-bottom:14px}
+.day summary{
+  cursor:pointer;padding:15px 17px;font-weight:700;color:var(--ink);
+  font-size:15.5px;list-style:none;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+}
+.day summary::-webkit-details-marker{display:none}
+.day summary::after{content:"＋";margin-left:auto;color:var(--meta);font-weight:400}
+.day[open] summary::after{content:"−"}
+.day-body{padding:2px 17px 16px}
+.tl{border-left:2px solid rgba(18,101,124,.16);margin-left:5px;padding-left:15px}
+.tl-row{position:relative;padding:7px 0}
+.tl-row::before{content:"";position:absolute;left:-21px;top:14px;width:7px;height:7px;
+  border-radius:50%;background:var(--teal)}
+.tl-time{color:var(--time);font-size:12.5px;font-variant-numeric:tabular-nums}
+.tl-main{font-size:14.5px;color:var(--ink);font-weight:600}
+.tl-note{font-size:13.5px;color:#4c666b}
+.mealbox{margin-top:12px;padding:11px 13px;background:rgba(18,101,124,.045);
+  border-radius:9px;font-size:13.5px;color:#3d585d}
+.mealbox b{color:var(--ink)}
+
+/* 提示条 */
+.alert{
+  border:1px solid rgba(178,59,59,.28);background:rgba(178,59,59,.055);
+  border-radius:11px;padding:15px 17px;margin:16px 0;
+}
+.alert-t{color:var(--warn);font-weight:700;font-size:14.5px;margin-bottom:6px}
+.alert p{font-size:13.5px;color:#4a3a3a;margin-top:5px}
+
+/* 未安排清单 */
+.unsch{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:14px 15px;margin-bottom:12px;transition:background .2s,border-color .2s}
+.unsch.sel{background:rgba(18,101,124,.06);border-color:var(--teal)}
+.unsch-head{display:flex;align-items:flex-start;gap:11px}
+.unsch input[type=checkbox]{width:19px;height:19px;margin-top:3px;accent-color:var(--teal);flex:0 0 auto}
+.unsch-name{font-weight:700;color:var(--ink);font-size:15px}
+.unsch-meta{font-size:12.5px;color:var(--meta);margin-top:3px}
+.gen-btn{
+  width:100%;min-height:46px;margin-top:8px;border-radius:10px;border:none;
+  background:var(--teal);color:#fff;font-size:15px;font-weight:600;
+  font-family:inherit;cursor:pointer;
+}
+.gen-btn:active{opacity:.85}
+textarea#prompt-out{
+  width:100%;height:190px;margin-top:12px;padding:12px;border-radius:10px;
+  border:1px solid var(--line);background:#fff;font-size:12.5px;line-height:1.6;
+  font-family:ui-monospace,Menlo,Consolas,monospace;resize:vertical;color:#2b4348;
+}
+.copy-btn{width:100%;min-height:42px;margin-top:8px;border-radius:10px;
+  border:1px solid var(--teal);background:transparent;color:var(--teal);
+  font-size:14px;font-weight:600;font-family:inherit;cursor:pointer}
+
+/* 贴士卡 */
+.tip{background:var(--card);border:1px solid var(--line);border-radius:11px;
+  padding:14px 16px;margin-bottom:12px}
+.tip-h{font-weight:700;color:var(--ink);font-size:14.5px;margin-bottom:5px}
+.tip p{font-size:13.5px;color:#3d585d;margin-top:4px}
+.tip ul{margin:5px 0 0 17px}
+.tip li{font-size:13.5px;color:#3d585d;margin-top:3px}
+
+footer{max-width:720px;margin:0 auto;padding:34px 22px 46px;
+  border-top:1px solid var(--line);margin-top:34px;
+  font-size:12px;color:var(--meta);line-height:1.75}
+footer b{color:var(--ink)}
+
+@media(max-width:430px){
+  .cover{height:340px}
+  .cover h1{font-size:29px}
+  .sec-h{font-size:22px}
+  .card-img{height:150px}
+  body{font-size:14.5px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="topnav"><div class="topnav-in">
+  <a href="#itinerary">行程</a>
+  <a href="#attractions">景点</a>
+  <a href="#experiences">体验</a>
+  <a href="#dining">餐饮住宿</a>
+  <a href="#shopping">购物</a>
+  <a href="#tips">当地贴士</a>
+  <a href="#unscheduled">未安排清单</a>
+</div></nav>
+
+<header class="cover">
+  <img src="coron-guide_files/kayangan-lake.jpg" alt="科隆石灰岩峭壁与潟湖">
+  <div class="cover-in">
+    <div class="cover-kicker">Coron · Palawan · Philippines</div>
+    <h1>科隆 9 天 8 晚 · 沉船潜水手册</h1>
+    <div class="cover-sub">2026.09.20 – 09.28 ｜ 深圳出发 ｜ 单人 · AOW 持证</div>
+    <div class="chips">
+      <span class="chip">二战沉船 · 核心</span>
+      <span class="chip">AOW 可下深度</span>
+      <span class="chip">Coral Triangle</span>
+      <span class="chip">台风季 · 留缓冲</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+<div style="padding-top:26px">
+<div class="alert">
+  <div class="alert-t">⚠ 先把最大的风险摆在前面：9 月是科隆台风季峰值</div>
+  <p>多个来源一致指出 <b>8–10 月是科隆全年海况最差的窗口</b>：科隆湾地处台风走廊，虽部分受地形遮蔽，但台风路径一旦横穿菲律宾，<span class="warn">出海交通可能被整体叫停 1–3 天</span>；外海岛礁跳岛行程（Kayangan Lake、Twin Lagoon、Calauit 等）确定性最低，部分潜店甚至 9–10 月整月歇业。</p>
+  <p>好消息是：<b>科隆湾内的沉船潜点相对抗风浪</b>，是你这趟的主要目标，大多数天气窗口仍能下水。本手册因此把行程全部压在<b>湾内沉船</b>上，跳岛只作为弹性可选项。</p>
+  <p><b>三条硬建议</b>：① 买含<span class="warn">潜水保障</span>的旅行保险（DAN / DiveAssure，普通旅游险通常不保潜水）；② 不要把 9 天全部排满，<b>留 2 天机动</b>；③ 回程若经马尼拉转机，<b>别买当天最后一班</b>，给航班延误留出一天余量。</p>
+</div>
+</div><section id="itinerary">
+  <div class="sec-num">MODULE 01</div>
+  <h2 class="sec-h">行程 Itinerary</h2>
+  <p class="sec-intro">9 天 8 晚，主体是「马尼拉入境 → 飞布桑加 → 科隆镇落脚 → 按日出海潜水」。节奏围绕<b>潜水日</b>展开：潜日通常 2–3 潜，下午 4 点前回港；非潜日穿插跳岛与镇上恢复。餐饮与住宿在此只写范围，具体店名见第 4 模块。</p>
+
+  <div class="card" style="background:rgba(18,101,124,.05)">
+    <div class="card-h">怎么飞：全程动线与免签约束</div>
+    <p class="card-p">菲律宾对持中国普通护照者开放<b>14 天免签</b>（2026-01-16 起试行一年），但有两个硬约束：<span class="warn">只能从马尼拉 NAIA 或宿务 MCIA 入境</span>，且<span class="warn">停留不可延期</span>。深圳无直飞宿务，但<b>深圳航空有直飞马尼拉</b>（约 2h20m），因此走「深圳 → 马尼拉 → 布桑加」最顺。</p>
+    <p class="card-p tight"><b>三段航程</b>：① <span class="t">深圳 SZX → 马尼拉 MNL</span>（深航，夜航约 2h20m）；② <span class="t">马尼拉 MNL → 布桑加 USU</span>（Cebu Pacific / PAL / AirSWIFT，约 1h–1h25m）；③ <span class="t">布桑加机场 → 科隆镇</span>（面包车 30–45 分钟）。</p>
+    <p class="card-p tight"><b>关键提醒</b>：马尼拉转机需<b>换航站楼</b>（国际多落 T3，国内航班有 T2/T3/T4），留足 <b>3 小时以上</b>转机时间；两段机票建议本身开在同一张订单上或至少留 4 小时缓冲，避免前段延误导致后段作废。马尼拉 → 布桑加是热门短线，<span class="mark">务必提前 4–8 周订票</span>。</p>
+  </div>
+
+  <div class="day" open>
+    <summary><span>Day 1 · 09/20（日）</span><span style="color:var(--meta);font-weight:400;font-size:13px">抵达 · 马尼拉中转</span></summary>
+    <div class="day-body">
+      <div class="tl">
+        <div class="tl-row"><div class="tl-time">23:20</div><div class="tl-main">深圳宝安 T3 起飞</div><div class="tl-note">深圳航空 ZH207，夜航。起飞前 3 天内完成 eTravel 申报。</div></div>
+        <div class="tl-row"><div class="tl-time">次日 01:40</div><div class="tl-main">抵达马尼拉 NAIA T3</div><div class="tl-note">入境走免签通道，备好护照、返程机票、全程住宿订单、eTravel 二维码。</div></div>
+      </div>
+      <div class="mealbox"><b>住宿</b>：直接睡机场所在片区或机场酒店，或衔接当日早班机飞布桑加。<br><b>提示</b>：这一晚尽量不要安排马尼拉市区活动，明早还要赶国内段。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <summary><span>Day 2 · 09/21（一）</span><span style="color:var(--meta);font-weight:400;font-size:13px">马尼拉 → 布桑加 → 科隆镇</span></summary>
+    <div class="day-body">
+      <div class="tl">
+        <div class="tl-row"><div class="tl-time">上午</div><div class="tl-main">MNL → USU 国内段</div><div class="tl-note">约 1 小时。注意航站楼转换，至少留 3 小时转机缓冲。</div></div>
+        <div class="tl-row"><div class="tl-time">中午</div><div class="tl-main">布桑加机场 → 科隆镇</div><div class="tl-note">面包车 30–45 分钟（约 PHP 180–200/人）。</div></div>
+        <div class="tl-row"><div class="tl-time">14:00</div><div class="tl-main">入住 + 镇上安顿</div><div class="tl-note">放行李、买防晒与零食，走一遍镇中心认路。</div></div>
+        <div class="tl-row"><div class="tl-time">16:00</div><div class="tl-main">到潜店报到确认行程</div><div class="tl-note">出示 AOW 证与 logbook，确认潜点安排、装备尺寸、明早集合时间。</div></div>
+        <div class="tl-row"><div class="tl-time">18:00</div><div class="tl-main">马基尼特温泉（Maquinit Hot Spring）</div><div class="tl-note">镇外约 7 km，盐水温泉 39–40°C，潜水前放松肩颈正合适。三轮车往返约 PHP 300–400。</div></div>
+      </div>
+      <div class="mealbox"><b>午餐</b>：机场或镇上顺路解决。<br><b>晚餐</b>：镇中心片区（近码头一带）。<br><b>住宿</b>：住科隆镇中心片区，步行可达码头与潜店。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <summary><span>Day 3 · 09/22（二）</span><span style="color:var(--meta);font-weight:400;font-size:13px">潜水日 ①  · 浅水沉船热身</span></summary>
+    <div class="day-body">
+      <div class="tl">
+        <div class="tl-row"><div class="tl-time">08:00</div><div class="tl-main">潜店集合 · 装备检查</div><div class="tl-note">确认配重、气瓶、潜水灯。</div></div>
+        <div class="tl-row"><div class="tl-time">08:30</div><div class="tl-main">出海：Lusong Gunboat（沉船炮艇）</div><div class="tl-note">水深 3–12 m，浅且开阔，适合第一天找状态、调中性浮力。</div></div>
+        <div class="tl-row"><div class="tl-time">11:00</div><div class="tl-main">第二潜：Skeleton Wreck</div><div class="tl-note">6–10 m，船体结构清晰可见，光线好，适合拍照。</div></div>
+        <div class="tl-row"><div class="tl-time">13:00</div><div class="tl-main">船上午餐</div><div class="tl-note">多数潜店含船上简餐。</div></div>
+        <div class="tl-row"><div class="tl-time">14:30</div><div class="tl-main">第三潜：Siete Pecados 珊瑚礁</div><div class="tl-note">3–24 m，珊瑚礁生境，常见玳瑁海龟与小丑鱼。浮力练熟后这潜会很舒服。</div></div>
+        <div class="tl-row"><div class="tl-time">17:00</div><div class="tl-main">回港 · 休息</div><div class="tl-note">潜水日不安排剧烈活动，多补水。</div></div>
+      </div>
+      <div class="mealbox"><b>午餐</b>：船上。<br><b>晚餐</b>：镇中心片区（海鲜为主）。<br><b>住宿</b>：科隆镇中心片区。</div>
+    </div>
+  </div>
+</section>
+  <div class="day">
+    <summary><span>Day 4 · 09/23（三）</span><span style="color:var(--meta);font-weight:400;font-size:13px">潜水日 ② A · 大船 Okikawa Maru</span></summary>
+    <div class="day-body">
+      <div class="tl">
+        <div class="tl-row"><div class="tl-time">08:00</div><div class="tl-main">出海：Okikawa Maru</div><div class="tl-note">科隆湾最大沉船，约 160–170 m 长油轮，正立姿态，水深 10–26 m。上层结构 10–18 m 部分珊瑚覆盖极好，是 AOW 最容易上手的大船。</div></div>
+        <div class="tl-row"><div class="tl-time">11:30</div><div class="tl-main">第二潜：Olympia Maru</div><div class="tl-note">15–30 m，货舱开放可穿游，软珊瑚与狮子鱼多。流速中等，注意跟随导潜路线。</div></div>
+        <div class="tl-row"><div class="tl-time">15:00</div><div class="tl-main">回镇 · 傍晚登上 Mt. Tapyas 观景台</div><div class="tl-note">约 700+ 级台阶，15–20 分钟登顶，俯瞰科隆湾群岛日落。潜水后爬台阶量力而行。</div></div>
+      </div>
+      <div class="mealbox"><b>午餐</b>：船上。<br><b>晚餐</b>：镇中心片区。<br><b>住宿</b>：科隆镇中心片区。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <summary><span>Day 5 · 09/24（四）</span><span style="color:var(--meta);font-weight:400;font-size:13px">潜水日 ③ A · 军舰 Akitsushima + 深船 Irako</span></summary>
+    <div class="day-body">
+      <div class="tl">
+        <div class="tl-row"><div class="tl-time">08:00</div><div class="tl-main">出海：Akitsushima（秋津洲）</div><div class="tl-note">22–36 m，科隆唯一军舰类沉船，甲板上仍架着防空炮、水中吊车结构保存完好，是全湾最上镜的一艘。</div></div>
+        <div class="tl-row"><div class="tl-time">11:30</div><div class="tl-main">第二潜：Kogyo Maru</div><div class="tl-note">22–34 m，货舱内仍留有推土机与水泥搅拌机残骸，历史感很强。建议用 Nitrox 延长免减压时间。</div></div>
+        <div class="tl-row"><div class="tl-time">14:30</div><div class="tl-main">第三潜（可选）：Irako</div><div class="tl-note">33–43 m，全湾最深、保存最好的冷藏船，被多数资深潜水员评为科隆第一。深潜 + 流较强，需良好浮力与气量管理。</div></div>
+      </div>
+      <div class="mealbox"><b>午餐</b>：船上。<br><b>晚餐</b>：镇中心片区。<br><b>住宿</b>：科隆镇中心片区。<br><b>提示</b>：今天是全程强度最高的一天，Irako 若当天流大或状态一般，果断跳过换浅点。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <summary><span>Day 6 · 09/25（五）</span><span style="color:var(--meta);font-weight:400;font-size:13px">潜水日 ④ · Barracuda Lake 温跃层</span></summary>
+    <div class="day-body">
+      <div class="tl">
+        <div class="tl-row"><div class="tl-time">08:30</div><div class="tl-main">出海：Barracuda Lake</div><div class="tl-note">科隆最独特的潜点之一：0–40 m，湖水分层，穿过温跃层时水温可在几秒内从 28°C 跳到 38°C，视觉与体感都很超现实。需背负气瓶爬一小段石灰岩台阶。</div></div>
+        <div class="tl-row"><div class="tl-time">11:30</div><div class="tl-main">第二潜：Morazan Maru（East Tangat）</div><div class="tl-note">14–26 m，黑珊瑚点缀舷窗，机舱可进入，梭鱼与石斑成群，是科隆最常被拍摄的一艘。</div></div>
+        <div class="tl-row"><div class="tl-time">15:00</div><div class="tl-main">回镇 · 休息 / 镇上按摩</div><div class="tl-note">连续三天两潜以上，今天下午给身体留白。</div></div>
+      </div>
+      <div class="mealbox"><b>午餐</b>：船上。<br><b>晚餐</b>：镇中心片区。<br><b>住宿</b>：科隆镇中心片区。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <summary><span>Day 7 · 09/26（六）</span><span style="color:var(--meta);font-weight:400;font-size:13px">非潜日 · 跳岛（海况决定，可改期）</span></summary>
+    <div class="day-body">
+      <div class="tl">
+        <div class="tl-row"><div class="tl-time">09:00</div><div class="tl-main">Coron Island 跳岛：Kayangan Lake</div><div class="tl-note">菲律宾最负盛名的湖泊之一，需爬约 700 级石灰岩台阶（单程 10–20 分钟）越过山脊到湖面。早到避人潮。</div></div>
+        <div class="tl-row"><div class="tl-time">11:30</div><div class="tl-main">Twin Lagoon 双子泻湖</div><div class="tl-note">两个泻湖由石灰岩壁隔开，低潮时可从岩洞穿过。内外水温有差，拍摄效果极佳。</div></div>
+        <div class="tl-row"><div class="tl-time">14:00</div><div class="tl-main">Coral Garden / Banol Beach 浮潜与沙滩</div><div class="tl-note">珊瑚花园浮潜，午后沙滩休息。</div></div>
+        <div class="tl-row"><div class="tl-time">18:30</div><div class="tl-main">回镇 · 晚餐</div><div class="tl-note">注意：潜水后 18–24 小时内不宜再下水跳岛深潜；浮潜无妨。若 Day 7 想潜水，把跳岛挪后。</div></div>
+      </div>
+      <div class="mealbox"><b>午餐</b>：跳岛团含简餐。<br><b>晚餐</b>：镇中心片区。<br><b>住宿</b>：科隆镇中心片区。<br><b>弹性</b>：这天是全程最容易被海况影响的一天，海况差就整段替换为镇上休整或再下一个潜日。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <summary><span>Day 8 · 09/27（日）</span><span style="color:var(--meta);font-weight:400;font-size:13px">机动日 · 补潜或北线</span></summary>
+    <div class="day-body">
+      <div class="tl">
+        <div class="tl-row"><div class="tl-time">全天</div><div class="tl-main">弹性安排（三选一）</div><div class="tl-note"><b>A</b> 补潜：前两天因海况取消的潜点今天补上；<b>B</b> 北线一日：Calauit 野生动物保护区（长颈鹿、斑马）或 Malcapuya 岛，单程车+船常需 2 小时以上，是完整一天；<b>C</b> 彻底休整：镇上市场、温泉、按摩。</div></div>
+      </div>
+      <div class="mealbox"><b>午餐</b>：视行程在船上或保护区。<br><b>晚餐</b>：镇中心片区。<br><b>住宿</b>：科隆镇中心片区。<br><b>提示</b>：把这天当缓冲区用，不要提前塞满。</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <summary><span>Day 9 · 09/28（一）</span><span style="color:var(--meta);font-weight:400;font-size:13px">返程 · 科隆 → 马尼拉 → 深圳</span></summary>
+    <div class="day-body">
+      <div class="tl">
+        <div class="tl-row"><div class="tl-time">上午</div><div class="tl-main">USU → MNL</div><div class="tl-note">务必先确认当日航班时刻，布桑加班次有限且受天气影响。</div></div>
+        <div class="tl-row"><div class="tl-time">下午–夜间</div><div class="tl-main">MNL → SZX</div><div class="tl-note">深航回程。若两段同日衔接，留足 3 小时以上转机缓冲。</div></div>
+      </div>
+      <div class="mealbox"><b>重要</b>：<span class="warn">潜水后至少留 24 小时再乘机</span>（多日多次潜水后建议更保守）。你 Day 6 是最后一个潜日，09/25 到 09/28 已满足 24 小时以上，安全。<br><b>提示</b>：台风季布桑加航班取消并不罕见，若时间允许，考虑把回程留一天余量。</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+</section>
+<section id="attractions">
+  <div class="sec-num">MODULE 02</div>
+  <h2 class="sec-h">景点 Attractions</h2>
+  <p class="sec-intro">科隆的景点分两类：<b>水下</b>（二战沉船、温跃层湖）与<b>水外</b>（石灰岩湖、泻湖、观景台）。水下的部分在第 3 模块「体验」里按潜水活动展开，这里聚焦可以先看懂的目的地本体。</p>
+
+  <div class="card">
+    <div class="card-img-wrap"><img class="card-img" src="coron-guide_files/kayangan-lake.jpg" alt="凯央根湖石灰岩峭壁" loading="lazy"></div>
+    <div class="card-h">凯央根湖<span class="card-local">Kayangan Lake</span></div>
+    <p class="card-p">菲律宾公认最清澈的湖泊之一，藏在科隆岛（与科隆镇所在的布桑加岛不是同一座岛）的石灰岩山体之间。水是 70% 淡水 + 30% 海水的混合，入眼不刺，能见度常超 15 m，湖底岩石与水下沉木清晰可见。</p>
+    <p class="card-p tight"><span class="icon">◷</span> 需爬约 700 级石灰岩台阶（单程 15–20 分钟），山脊观景台是全程最经典的机位。<b>建议早上 9:30 前到</b>，10:00–13:00 是人潮高峰，观景台一次仅容约 15 人。</p>
+    <p class="card-p tight"><span class="price">社区环保费 PHP 300–400/人</span>（通常含在跳岛团费里）· 岛上无刷卡，只收现金</p>
+    <p class="meta-row">地址：Kayangan Lake, Coron, Palawan, Philippines ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Kayangan%20Lake%20Coron" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Kayangan Lake', 11.95726, 120.22623, 'https://www.google.com/maps/search/?api=1&query=Kayangan+Lake+Coron')">导航</button></p>
+    <p class="card-p tight"><span class="tag">必去</span><span class="tag warn">禁止跳水</span>湖底有隐藏岩檐，水深变化快，只能从指定入口下水，全程需穿救生衣。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-img-wrap"><img class="card-img" src="coron-guide_files/twin-lagoon.jpg" alt="双子泻湖石灰岩地貌" loading="lazy"></div>
+    <div class="card-h">双子泻湖<span class="card-local">Twin Lagoon</span></div>
+    <p class="card-p">两片被石灰岩壁隔开的泻湖：外层连通大海、水温偏低；内层有淡水泉渗入、偏暖。两湖之间<b>低潮时</b>可从岩壁下的窄洞游过去，高潮时就只能走木梯翻过去。</p>
+    <p class="card-p tight">水温差在几米之内就能感受到，内湖水面如镜，是浮潜与拍照的绝佳点。<b>建议让船家查好潮位再定顺序</b>——低潮进出更轻松。</p>
+    <p class="card-p tight"><span class="price">含在跳岛团费内</span> · 建议自带溯溪鞋，岩壁长苔处滑</p>
+    <p class="meta-row">地址：Twin Lagoon, Coron, Palawan ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Twin%20Lagoon%20Coron" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Twin Lagoon', 11.94760, 120.20968, 'https://www.google.com/maps/search/?api=1&query=Twin+Lagoon+Coron')">导航</button></p>
+    <p class="card-p tight"><span class="tag">出片</span><span class="tag">浮潜</span></p>
+  </div>
+
+  <div class="card">
+    <div class="card-img-wrap"><img class="card-img" src="coron-guide_files/barracuda-lake.jpg" alt="科隆石灰岩湖" loading="lazy"></div>
+    <div class="card-h">梭鱼湖<span class="card-local">Barracuda Lake</span></div>
+    <p class="card-p">一座火山成因的湖，深度可达 40 m，最出名的是它的<b>温跃层</b>——湖水因盐度不同强烈分层，潜水或浮潜时穿过某一道水层，体感温度能在几秒内从约 28°C 跳到 38°C，像穿过一层温水的膜。</p>
+    <p class="card-p tight">水下是石灰岩峭壁，生物不多（有虾虎鱼），但地貌与体感独一无二。<b>需要背气瓶爬一小段台阶</b>，是潜水日里最轻松又最特别的一潜。</p>
+    <p class="card-p tight"><span class="price">潜水团费内 / 跳岛环保费另计</span></p>
+    <p class="meta-row">地址：Barracuda Lake, Coron Island, Palawan ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Barracuda%20Lake%20Coron" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Barracuda Lake', 11.93600, 120.21700, 'https://www.google.com/maps/search/?api=1&query=Barracuda+Lake+Coron')">导航</button></p>
+    <p class="card-p tight"><span class="tag">必去</span><span class="tag">温跃层</span></p>
+  </div>
+
+  <div class="card">
+    <div class="card-img-wrap"><img class="card-img" src="coron-guide_files/maquinit-hotspring.jpg" alt="热带丛林中的温泉" loading="lazy"></div>
+    <div class="card-h">马基尼特温泉<span class="card-local">Maquinit Hot Spring</span></div>
+    <p class="card-p">少见的海水温泉，就在海边红树林旁，水温 39–40°C，池子由火山地热加热。潜水后泡一泡对肩背恢复很友好，也是科隆镇周边最容易安排的一站。</p>
+    <p class="card-p tight">距镇中心约 7 km，三轮车往返约 PHP 300–400。傍晚去最舒服，白天偏热。</p>
+    <p class="card-p tight"><span class="price">门票 PHP 200/人</span></p>
+    <p class="meta-row">地址：Maquinit Hot Spring, Coron, Palawan ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Maquinit%20Hot%20Spring%20Coron" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Maquinit Hot Spring', 11.95970, 120.19230, 'https://www.google.com/maps/search/?api=1&query=Maquinit+Hot+Spring+Coron')">导航</button></p>
+    <p class="card-p tight"><span class="tag">潜水后恢复</span></p>
+  </div>
+
+  <div class="card">
+    <div class="card-h">塔皮亚斯山观景台<span class="card-local">Mt. Tapyas</span></div>
+    <p class="card-p">科隆镇的制高点，约 700+ 级台阶到山顶十字架与观景平台，可 360° 俯瞰科隆湾、群岛与落日。Google 地图 4.8 分（293 条评价）。</p>
+    <p class="card-p tight">约 15 分钟登顶。山顶无遮阴，白天很晒；<b>傍晚 17:00 左右上山</b>看日落最合适。潜水日建议只当天体力好时才爬。</p>
+    <p class="card-p tight"><span class="price">免费</span></p>
+    <p class="meta-row">地址：Mt. Tapyas, Coron Town, Palawan ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Mount%20Tapyas%20Coron" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Mount Tapyas', 11.99760, 120.19880, 'https://www.google.com/maps/search/?api=1&query=Mount+Tapyas+Coron')">导航</button></p>
+    <p class="card-p tight"><span class="tag">日落</span><span class="tag">免费</span></p>
+  </div>
+
+  <div class="card">
+    <div class="card-img-wrap"><img class="card-img" src="coron-guide_files/coron-town.jpg" alt="菲律宾渔港码头" loading="lazy"></div>
+    <div class="card-h">科隆镇与公共市场<span class="card-local">Coron Town Proper</span></div>
+    <p class="card-p">所有潜店、餐厅、码头与住宿都集中在镇上，步行基本能走完。清晨的公共市场值得一逛——渔民刚上岸的渔获直接摆摊，可以买了拿去附近的 paluto 代加工店按小费加工，比餐厅更便宜也更新鲜，是当地人真实的吃法。</p>
+    <p class="card-p tight">镇不大，夜间安静，没有派对气氛，多数人早睡早起赶船——正好配合潜水节奏。</p>
+    <p class="card-p tight"><span class="price">市场渔获按品种计价</span> · 代加工费另算</p>
+    <p class="meta-row">地址：Coron Town Proper, Busuanga Island, Palawan ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Coron%20Town%20Palawan" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Coron Town', 11.99860, 120.20430, 'https://www.google.com/maps/search/?api=1&query=Coron+Town+Palawan')">导航</button></p>
+    <p class="card-p tight"><span class="tag">市井</span><span class="tag">买渔获</span></p>
+  </div>
+
+  <div class="hr"></div>
+</section>
+<section id="experiences">
+  <div class="sec-num">MODULE 03</div>
+  <h2 class="sec-h">体验 Experiences</h2>
+  <p class="sec-intro">你的核心体验就是<b>沉船潜水</b>——科隆是全球最容易上手的二战沉船潜点群。这里把潜点按难度分组，附上每潜的看点、深度与对 AOW 的要求，方便你和潜店对表。</p>
+
+  <div class="card">
+    <div class="card-img-wrap"><img class="card-img" src="coron-guide_files/wreck-dive.jpg" alt="水下沉船潜水" loading="lazy"></div>
+    <div class="card-h">二战沉船潜水<span class="card-local">WWII Wreck Diving · Coron Bay</span></div>
+    <p class="card-p">1944 年 9 月 24 日，美军第 38 特混舰队空袭科隆湾，击沉十余艘日本补给舰船。八十年过去，这些船体成了珊瑚包裹的人工鱼礁，集中在科隆湾内、距镇码头船程 20–60 分钟，<b>一个区域就能连打十来个不同的沉船</b>，这种密度在东南亚独一份。</p>
+    <p class="card-p tight"><span class="icon">◷</span> 单潜 45–60 分钟 · <b>两个潜点的全天套餐约 PHP 4,000–5,500</b>（含导潜、气瓶、配重、船费，装备另租）</p>
+    <p class="meta-row">下水点：Coron Bay（自科隆镇码头出发）｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Coron%20Bay%20Palawan" target="_blank" rel="noopener">Google 地图</a></p>
+  </div>
+
+  <div class="card">
+    <div class="card-h">按难度选点：AOW 能打到哪一层</div>
+    <p class="card-p"><b>浅水热身（AOW 轻松）</b></p>
+    <p class="card-p tight">· <b>Lusong Gunboat</b> 3–12 m，全开放，浮潜都能看<br>· <b>Skeleton Wreck</b> 6–10 m，船体轮廓清晰<br>· <b>East Tangat Gunboat</b> 3–22 m，基本无需穿舱</p>
+    <p class="card-p tight" style="margin-top:10px"><b>AOW 主战场（本趟核心）</b></p>
+    <p class="card-p tight">· <b>Okikawa Maru</b> 10–26 m — 全湾最大，约 160–170 m 油轮，上层珊瑚覆盖极好<br>· <b>Olympia Maru</b> 15–30 m — 货舱可穿游，软珊瑚、狮子鱼<br>· <b>Morazan Maru</b> 14–26 m — 黑珊瑚舷窗 + 机舱，最上镜<br>· <b>Kogyo Maru</b> 22–34 m — 货舱里还躺着推土机与搅拌机<br>· <b>Akitsushima</b> 22–36 m — 唯一军舰，甲板防空炮与吊车结构完整</p>
+    <p class="card-p tight" style="margin-top:10px"><b>深潜档（建议再加 Deep 专长）</b></p>
+    <p class="card-p tight">· <b>Irako</b> 33–43 m — 全湾最深、保存最好，多被资深潜水员评为科隆第一；流较强，气量管理与浮力要求高</p>
+    <p class="card-p tight"><span class="tag">AOW 适配</span><span class="tag warn">穿舱需 Wreck 专长</span></p>
+    <p class="card-p tight" style="margin-top:8px"><b>选店建议</b>：科隆潜店水平差异较大，圈内有个说法叫「Coron Cowboys」，指那些在穿舱流程上偷工的店。<b>预订前直接问三件事</b>：穿舱时导潜会不会布引导绳？光区（light zone）规则是什么？导潜是否持沉船专长？正规店会答得很清楚。</p>
+    <p class="card-p tight" style="margin-top:8px"><b>装备建议</b>：3 mm 湿衣足够（水温常年 27–30°C），一天多潜可上 5 mm；<b>带 Nitrox 认证</b>，22–36 m 的船上用高氧能明显延长免减压时间；自备主灯 + 备用灯。</p>
+    <p class="meta-row">救援与安全：Sea Dive Resort 运营科隆唯一的<b>高压氧舱</b>；最近的其他氧舱在马尼拉（约 1 小时航程）与宿务。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-img-wrap"><img class="card-img" src="coron-guide_files/dugong.jpg" alt="儒艮在水下" loading="lazy"></div>
+    <div class="card-h">儒艮同游<span class="card-local">Dugong Watching · North Busuanga</span></div>
+    <p class="card-p">北布桑加的海草床生活着菲律宾最大的儒艮种群，约 30–40 头。这是受严格管理的观赏活动：船停在远处，浮潜者安静漂在水面，等儒艮自己过来——<b>不追、不潜、不围</b>。</p>
+    <p class="card-p tight"><span class="icon">◷</span> 需一早出发，往返常占整天 · <b>约 PHP 2,500–3,500</b>（拼船）</p>
+    <p class="card-p tight"><b>最佳季节 11–5 月</b>——你的 9 月行程命中率会明显偏低，海况也增加出航不确定性。当作弹性备选，不当作必成目标。</p>
+    <p class="meta-row">区域：Calauit / North Busuanga 海草床 ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Calauit%20Island%20Busuanga" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Calauit Island', 12.32400, 119.90600, 'https://www.google.com/maps/search/?api=1&query=Calauit+Island+Busuanga')">导航</button></p>
+    <p class="card-p tight"><span class="tag">需拼船</span><span class="tag warn">9 月命中率低</span></p>
+  </div>
+
+  <div class="card">
+    <div class="card-img-wrap"><img class="card-img" src="coron-guide_files/island-hopping.jpg" alt="菲律宾小岛与螃蟹船" loading="lazy"></div>
+    <div class="card-h">跳岛与泻湖巡游<span class="card-local">Coron Island Hopping</span></div>
+    <p class="card-p">最经典的是 Coron Island Tour A：凯央根湖 + 双子泻湖 + 梭鱼湖 + 珊瑚花园 + 沙滩，一天走完科隆岛的核心水面。<b>拼船约 PHP 1,500–1,800/人</b>，另加社区环保费约 PHP 300。</p>
+    <p class="card-p tight">潜水日与非潜日需要错开——跳岛虽以浮潜为主，但若当天还安排深潜，请务必遵守 18–24 小时间隔。多数人把跳岛放在潜水的间歇日或最后一天。</p>
+    <p class="meta-row">出发地：科隆镇码头 ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Coron%20Island%20Tour%20A" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Coron Island', 11.92000, 120.24000, 'https://www.google.com/maps/search/?api=1&query=Coron+Island+Palawan')">导航</button></p>
+    <p class="card-p tight"><span class="tag">拼船划算</span><span class="tag">早出发避人潮</span></p>
+  </div>
+
+  <div class="hr"></div>
+</section>
+<section id="dining">
+  <div class="sec-num">MODULE 04</div>
+  <h2 class="sec-h">餐饮住宿 Dining &amp; Lodging</h2>
+  <p class="sec-intro">本模块只覆盖三类：当地小吃、值得专程去、住宿。科隆镇很小，餐厅与酒店都在步行或几分钟三轮车范围内，动线压力不大。评分来源均为 <b>Google Maps</b>（境外口径）。</p>
+
+  <h3 style="font-size:17px;margin:24px 0 12px;color:var(--ink)">4a · 当地小吃 / 街头风味</h3>
+
+  <div class="card">
+    <div class="card-img-wrap"><img class="card-img" src="coron-guide_files/seafood.jpg" alt="烤海鲜拼盘" loading="lazy"></div>
+    <div class="card-h">Kinilaw 腌生鱼<span class="card-local">菲律宾版 ceviche</span></div>
+    <p class="card-p">菲律宾最经典的生鱼吃法：新鲜鱼肉用醋 + 卡曼橘（calamansi）腌制，配姜、洋葱、辣椒。<b>要点在于鱼够不够新鲜</b>——科隆靠渔港，当天上岸的鱼做这个最好。口感酸爽开胃，是等主菜时的绝佳前菜。</p>
+    <p class="card-p tight"><span class="price">PHP 200–350</span> · 几乎每家海鲜店都有，点单时问「今天的鱼是什么」</p>
+    <p class="meta-row">推荐去处：<b>Lobster King</b>（其辣味 kinilaw 被多次点名好评）· Google 4.0/5（约 1,200 条）｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Lobster%20King%20Coron" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Lobster King', 11.99800, 120.20400, 'https://www.google.com/maps/search/?api=1&query=Lobster+King+Coron')">导航</button></p>
+  </div>
+
+  <div class="card">
+    <div class="card-h">Paluto 代加工：市场买渔获</div>
+    <p class="card-p"><b>这不是一家店，而是科隆最地道的吃法</b>：清晨去公共市场（Coron Public Market）挑刚上岸的鱼、虾、螃蟹，拎到市场附近挂着「paluto」招牌的小店，付一点加工费让他们按你的口味做——烤、蒜蓉、酸汤都行。</p>
+    <p class="card-p tight"><span class="price">渔获按品种时价 + 加工费约 PHP 100–200/公斤</span> · 比餐厅便宜且更新鲜，当地人就这一口</p>
+    <p class="meta-row">地点：Coron Public Market 及周边代加工店 ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Coron%20Public%20Market" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Coron Public Market', 11.99820, 120.20300, 'https://www.google.com/maps/search/?api=1&query=Coron+Public+Market')">导航</button></p>
+    <p class="card-p tight"><span class="tag">最地道</span><span class="tag">要早去</span>市场清晨最热闹，中午后好货基本没了。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-h">Calamansi Muffin 卡曼橘松饼</div>
+    <p class="card-p">科隆本地的招牌甜点伴手礼，用当地卡曼橘做的玛芬，酸甜清香。<b>几乎每家本地烘焙店都有卖</b>，也是科隆最容易被带回家的味道。</p>
+    <p class="card-p tight"><span class="price">PHP 60–120/个</span> · 镇上烘焙店与部分餐厅有售</p>
+    <p class="meta-row">购买：镇上烘焙店 · 详细伴手礼建议见第 5 模块</p>
+  </div>
+
+  <h3 style="font-size:17px;margin:26px 0 12px;color:var(--ink)">4b · 值得专程去</h3>
+
+  <div class="card">
+    <div class="card-h">Lobster King<span class="card-local">海鲜 · 螃蟹／龙虾</span></div>
+    <p class="card-p">科隆名气最大的海鲜店，<b>自己挑海鲜、现场称重定价</b>再决定做法。主打黄油蒜蓉龙虾、咸蛋炒蟹、烤生蚝、酸辣 kinilaw。位于镇中心 Coron–Busuanga 路上，从多数酒店步行可达。</p>
+    <p class="card-p tight"><b>招牌</b>：黄油蒜香龙虾 · 咸蛋炒蟹 · 烤生蚝 · 辣味 kinilaw<br><span class="price">人均 PHP 500–3,000</span>（看点什么海鲜，龙虾拉高上限）</p>
+    <p class="card-p tight"><span class="icon">◷</span> 10:30–22:00 ｜ <b>Google 4.0/5</b>（约 1,200 条评价）</p>
+    <p class="card-p tight"><b>为什么值得专程</b>：科隆吃海鲜绕不开的一站，自己挑货、按重计价的体验本身也很有意思。不过评价里也有「火候过头、肉质偏老」的反馈——<b>点单时明确说要做嫩一点</b>会更稳。</p>
+    <p class="meta-row">地址：5 Coron–Busuanga Rd, Coron ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Lobster%20King%20Coron" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Lobster King', 11.99800, 120.20400, 'https://www.google.com/maps/search/?api=1&query=Lobster+King+Coron')">导航</button></p>
+  </div>
+
+  <div class="card">
+    <div class="card-h">Lolo Nonoy's<span class="card-local">菲式家常菜 · 实惠</span></div>
+    <p class="card-p">镇上最受本地人和旅人同时认可的平价家常馆子，份量足、价格实在。<b>烤鲜鱼和菲式套餐是招牌</b>，烤肉 ribs 也被评价为有类似韩式烤肉的风味。想吃得舒服又不心疼钱包，这里是首选。</p>
+    <p class="card-p tight"><b>招牌</b>：现烤鲜鱼 · 菲式套餐 · 烤肉 ribs<br><span class="price">人均 PHP 300–600</span></p>
+    <p class="card-p tight"><b>Google 4.4/5</b>（约 640 条评价）</p>
+    <p class="card-p tight"><b>为什么值得专程</b>：科隆少见的「好吃 + 便宜 + 不踩雷」组合，潜水日回来饿得狠的时候，这里出餐和份量都让人满意。</p>
+    <p class="meta-row">地址：Coron Town Proper, Palawan ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Lolo%20Nonoy%27s%20Coron" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Lolo Nonoy\'s', 11.99860, 120.20430, 'https://www.google.com/maps/search/?api=1&query=Lolo+Nonoy+Coron')">导航</button></p>
+  </div>
+
+  <div class="card">
+    <div class="card-h">Altrove Coron<span class="card-local">柴火披萨 · 换口味</span></div>
+    <p class="card-p">科隆人气最高的意大利餐厅，<b>柴火烤披萨</b>是招牌，一楼能看见师傅现场甩饼。连吃几天米饭和海鲜之后，这里是最自然的调剂。</p>
+    <p class="card-p tight"><b>招牌</b>：柴火披萨 · 意面<br><span class="price">人均 PHP 400–700</span></p>
+    <p class="card-p tight"><b>Google 4.2/5</b>（约 2,096 条评价，全镇评论量最多）</p>
+    <p class="card-p tight"><b>为什么值得专程</b>：9 天行程里难免吃腻菲餐，这家的品质在镇上属于断层领先。<b>饭点常年排队</b>，想吃晚餐建议提前订位或避开 19:00 高峰。</p>
+    <p class="meta-row">地址：Coron Town Proper, Palawan ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Altrove%20Coron" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Altrove Coron', 11.99900, 120.20460, 'https://www.google.com/maps/search/?api=1&query=Altrove+Coron')">导航</button></p>
+  </div>
+
+  <div class="card">
+    <div class="card-h">La Sirenetta<span class="card-local">水上码头海鲜 · 看日落</span></div>
+    <p class="card-p">建在水上栈桥上的海鲜餐厅，<b>正对科隆湾，日落景观是最大卖点</b>。新鲜鱼虾做烤或蒜蓉都很稳，适合安排在行程中一个不那么赶的傍晚。</p>
+    <p class="card-p tight"><b>招牌</b>：鲜鱼 · 虾类料理<br><span class="price">人均 PHP 500–900</span></p>
+    <p class="card-p tight"><b>Google 3.9/5</b>（约 437 条评价）</p>
+    <p class="card-p tight"><b>为什么值得专程</b>：吃的是环境与日落，不是评分。评分不高主要因近年周边施工影响了原有景观——<b>去之前可先确认视野是否受影响</b>。</p>
+    <p class="meta-row">地址：Real St, Coron Town Proper ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=La%20Sirenetta%20Coron" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('La Sirenetta', 11.99930, 120.20300, 'https://www.google.com/maps/search/?api=1&query=La+Sirenetta+Coron')">导航</button></p>
+  </div>
+
+  <h3 style="font-size:17px;margin:26px 0 12px;color:var(--ink)">4c · 住宿推荐</h3>
+  <p style="font-size:13.5px;color:#4c666b;margin-bottom:14px">原则：<b>一城一个基地</b>，住科隆镇中心片区，步行可达码头与潜店，每天出海不用换酒店。</p>
+
+  <div class="card">
+    <div class="card-h">Two Seasons Coron Bayside Hotel<span class="card-local">4 星 · 湾景</span></div>
+    <p class="card-p">镇上综合口碑最好的 4 星之一，位于镇中心、距科隆码头仅约 220–270 m，<b>出海动线极顺</b>。带屋顶无边泳池与健身房，房间有阳台海景，餐食与清洁度评价都很高。</p>
+    <p class="card-p tight"><b>位置</b>：National Road, Barangay Tagumpay —— 步行 3 分钟到码头／潜店集中区<br><b>档次</b>：精品度假型 · 适合想把住宿和休息质量拉满的人</p>
+    <p class="card-p tight"><span class="tag gold">Google / Trip.com：9.2/10（64 条）</span></p>
+    <p class="card-p tight"><span class="price">参考价约 ¥880–1,000/晚</span>（Trip.com 显示 9 月多在 HK$855–990 区间浮动）· <b>参考价，以平台实时价格为准</b></p>
+    <p class="card-p tight"><b>为什么住这里</b>：位置是最大优势——早起集合不折腾，晚上回来也近。9 月属科隆<b>淡季</b>，房价通常比 12–4 月的旺季低，性价比不错。</p>
+    <p class="meta-row">地址：National Road Barangay Tagumpay, Coron ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Two%20Seasons%20Coron%20Bayside%20Hotel" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Two Seasons Coron Bayside', 11.99720, 120.20360, 'https://www.google.com/maps/search/?api=1&query=Two+Seasons+Coron+Bayside+Hotel')">导航</button></p>
+  </div>
+
+  <div class="card">
+    <div class="card-h">The Funny Lion – Coron<span class="card-local">4 星 · 日落屋顶吧</span></div>
+    <p class="card-p">镇北侧坡地上的设计感酒店，<b>屋顶酒吧看日落</b>是招牌卖点，视野被评价为全镇最佳之一。位置离镇中心比 Two Seasons 稍远，但仍在可达范围内。</p>
+    <p class="card-p tight"><b>位置</b>：Sitio Jolo, Poblacion 5 —— 到镇中心／码头约 5–10 分钟车程<br><b>档次</b>：精品设计酒店 · 适合重视氛围与景观的人</p>
+    <p class="card-p tight"><span class="tag gold">Trip.com：9.3/10（75–80 条）</span></p>
+    <p class="card-p tight"><span class="price">参考价约 ¥540–800/晚</span>（Trip.com 30 天最低约 S$108 起）· <b>参考价，以平台实时价格为准</b></p>
+    <p class="card-p tight"><b>为什么住这里</b>：如果你想在潜水之外有「度假感」，这里的日落和泳池比纯商务型酒店更有记忆点；评分在当前数据里是几家里最高的。</p>
+    <p class="meta-row">地址：Sitio Jolo, Barangay Poblacion 5, Coron ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=The%20Funny%20Lion%20Coron" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('The Funny Lion Coron', 12.00130, 120.20380, 'https://www.google.com/maps/search/?api=1&query=The+Funny+Lion+Coron')">导航</button></p>
+  </div>
+
+  <div class="card">
+    <div class="card-h">Corto del Mar Hotel<span class="card-local">4 星 · 潜店同源</span></div>
+    <p class="card-p">与镇上有名的 <b>Corto Divers 潜店同属一个体系</b>，不少潜水客直接住这里、潜水打包。带泳池与池边吧，手工芒果冰沙被多次点名好评。位于 Comeseria St，到码头 / 镇中心步行可达。</p>
+    <p class="card-p tight"><b>位置</b>：Comeseria Street Barangay 1 —— 步行至潜店与码头<br><b>档次</b>：4 星度假型 · 适合以潜水为主、想省去通勤的人</p>
+    <p class="card-p tight"><span class="tag gold">Trip.com：8.9/10（45 条）</span></p>
+    <p class="card-p tight"><span class="price">参考价约 ¥600–700/晚</span>（起价约 CNY 608）· <b>参考价，以平台实时价格为准</b></p>
+    <p class="card-p tight"><b>为什么住这里</b>：住这里 + 在 Corto Divers 潜水是最省事的一体化选择，潜店就在楼下，装备和行程都好协调。</p>
+    <p class="meta-row">地址：Comeseria Street Barangay 1, Coron ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Corto%20del%20Mar%20Hotel%20Coron" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Corto del Mar Hotel', 11.99840, 120.20230, 'https://www.google.com/maps/search/?api=1&query=Corto+del+Mar+Hotel+Coron')">导航</button></p>
+  </div>
+
+  <div class="hr"></div>
+</section>
+<section id="shopping">
+  <div class="sec-num">MODULE 05</div>
+  <h2 class="sec-h">购物 Shopping</h2>
+  <p class="sec-intro">科隆不是购物型目的地，镇上能买的集中在两条街与一个市场。真正的「必买」其实只有一两类，剩下的按需。</p>
+
+  <div class="card">
+    <div class="card-h">镇中心主街（Coron–Busuanga Rd 一带）</div>
+    <p class="card-p">全镇最集中的商铺带，纪念品店、超市、药店、潜水用品店都在这条线上，步行十几分钟能走完。<b>买手信、补水母衣、买防晒基本在这里解决</b>。</p>
+    <p class="meta-row">地址：Coron–Busuanga Rd, Coron Town ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Coron%20Town%20Proper" target="_blank" rel="noopener">Google 地图</a><button class="nav-btn" onclick="openVenueNav('Coron Town Proper', 11.99860, 120.20430, 'https://www.google.com/maps/search/?api=1&query=Coron+Town+Proper')">导航</button></p>
+  </div>
+
+  <div class="card">
+    <div class="card-h">公共市场（Coron Public Market）</div>
+    <p class="card-p">买<b>真正本地的东西</b>来这：干鱼、虾酱、本地咖啡、热带水果。清晨最热闹，也是看当地人生活最好的地方。</p>
+    <p class="meta-row">地址：Coron Public Market, Palawan ｜ <a class="lnk" href="https://www.google.com/maps/search/?api=1&query=Coron%20Public%20Market" target="_blank" rel="noopener">Google 地图</a></p>
+  </div>
+
+  <div class="card">
+    <div class="card-h">伴手礼清单</div>
+    <p class="card-p"><b>1. Calamansi Muffin（卡曼橘松饼）</b> —— 科隆最标志性的伴手礼，酸甜清香。镇上烘焙店有售，PHP 60–120/个。保质期短，建议临走前买。</p>
+    <p class="card-p tight"><b>2. 干海产 / 虾酱（bagoong）</b> —— 市场买最便宜。注意<b>气味重、需密封</b>，托运行李要包两层防漏，别放随身。</p>
+    <p class="card-p tight"><b>3. 珍珠与贝壳饰品</b> —— 主街与码头附近摊位都有。<b>买珍珠请认准养殖珍珠</b>，价格差异大，多问几家再下手。</p>
+    <p class="card-p tight"><b>4. 本地咖啡豆</b> —— 菲律宾本地豆，性价比高，适合当轻便手信。</p>
+    <p class="card-p tight"><span class="tag warn">注意</span>珊瑚、贝壳制品（尤其未加工的大件）可能被中国海关或菲律宾出口管制查扣，<b>别买珊瑚制品</b>。</p>
+    <p class="meta-row">价格区间：多为 PHP 100–500</p>
+  </div>
+
+  <div class="hr"></div>
+</section>
+<section id="tips">
+  <div class="sec-num">MODULE 06</div>
+  <h2 class="sec-h">当地贴士 Local Tips</h2>
+  <p class="sec-intro">这一节的每条都直接关乎你这趟能不能顺利下水、顺利回家。</p>
+
+  <div class="tip">
+    <div class="tip-h">🛂 签证与入境（境外必读）</div>
+    <p><b>14 天免签</b>：自 2026-01-16 起，持中国普通护照以旅游／商务为目的可免签入境，停留不超过 14 天（自然日，从入境当天算起）。<b>不可延期、不可转签证类型</b>。</p>
+    <p><b>仅限两个口岸入境</b>：<span class="warn">马尼拉 NAIA</span> 或 <span class="warn">宿务 MCIA</span>。从其他机场（包括直飞布桑加）入境<b>不适用免签</b>——你的行程经马尼拉入境，符合要求。</p>
+    <p><b>必备材料</b>（缺一可能被拒）：① 护照有效期 ≥ 离境日 +6 个月、至少 1 页空白页；② <b>返程／离境机票</b>（日期须在入境第 14 天内）；③ <b>全程住宿预订</b>（覆盖整个停留期）；④ <b>eTravel 二维码</b>（入境前 72 小时内于 etravel.gov.ph 免费申报，保存截图 + 打印备用）。建议另备资金证明。</p>
+    <p style="margin-top:8px"><span class="tag warn">重要</span>该政策<b>试行期 1 年</b>（至 2027-01 前后评估延续）。出行前请再次核对菲律宾移民局与<a class="lnk" href="https://etravel.gov.ph" target="_blank" rel="noopener">中国驻菲律宾大使馆</a>最新公告。</p>
+    <p style="font-size:12.5px;color:var(--meta);margin-top:6px">来源：菲律宾外交部 Foreign Service Circular No. 2026-005；菲移民局 Operations Order No. 2026-001（2026-01-15 生效）；eTravel 官方 FAQ。</p>
+  </div>
+
+  <div class="tip">
+    <div class="tip-h">🌪 9 月海况：本行程最大变量</div>
+    <p>科隆干季为 <b>11 月–5 月</b>，湿季 6–11 月。<b>8–10 月是台风风险峰值</b>，9 月通常处于最活跃区间；湿季能见度会从旺季的 15–25 m 降到 7–15 m，部分潜店 9–10 月整月歇业。</p>
+    <p><b>对你的实际影响</b>：湾内沉船潜点受地形遮蔽，多数天气窗口仍可下水；但<b>外岛跳岛（Kayangan/Twin Lagoon/Calauit）确定性最低</b>，船班可能临时取消。</p>
+    <p><b>应对</b>：① 把 9 天当「潜水为主 + 跳岛随缘」来用，Day 7–8 留作机动；② 每天出发前问潜店当日海况与预报；③ 参照 PAGASA（菲律宾气象局）热带气旋公告；④ <b>必须买含潜水保障的保险</b>（DAN / DiveAssure），普通旅游险多不保潜水。</p>
+  </div>
+
+  <div class="tip">
+    <div class="tip-h">🤿 潜水安全与资质</div>
+    <p>· <b>带上 AOW 实体卡或电子证 + logbook</b>，潜店会核对；多数深点（Irako 43 m）建议加 Deep 专长，穿舱建议加 Wreck 专长。</p>
+    <p>· <b>最后一次潜水距今超过 5 个月</b>，部分潜店会要求先做 refresher。若手生，Day 3 的浅水沉船正好当适应。</p>
+    <p>· <b>Nitrox 强烈建议</b>：22–36 m 连续多潜，高氧能显著延长免减压时间；科隆多数潜店提供 28–38% 混合气。</p>
+    <p>· <b>飞行间隔</b>：单次潜水后 12–18 小时、多次潜水后 18–24 小时内不可乘机。你最后一个潜日在 09/25，09/28 返程安全。</p>
+    <p>· <b>氧舱</b>：科隆唯一的减压舱由 Sea Dive Resort 运营，最近的其他氧舱在马尼拉与宿务。深潜前可向潜店确认氧舱可用状态。</p>
+    <p>· <b>选店避坑</b>：问清穿舱是否布引导绳、光区规则、导潜是否有沉船专长。科隆潜店水平参差，"Coron Cowboys" 指的就是流程上偷工减料的店。</p>
+  </div>
+
+  <div class="tip">
+    <div class="tip-h">💵 支付、现金与预算</div>
+    <p>· <b>货币</b>：菲律宾比索（PHP）。参考汇率约 1 CNY ≈ 7.8 PHP、1 USD ≈ 57 PHP（实时浮动）。</p>
+    <p>· <span class="warn">科隆以现金为主</span>：镇上 ATM 有但<b>节假日容易取空</b>，跳岛、环保费、三轮车、市场全要现金。建议在马尼拉机场先换足，或带美元到镇上兑换。</p>
+    <p>· 高端酒店与部分餐厅可刷卡，但<b>不要指望到处能刷卡</b>。</p>
+    <p>· <b>日均预算</b>（不含潜水与机票）：背包约 USD 30、中档约 USD 80、舒适约 USD 200。另有 <b>旅游税约 USD 1.8/晚/人</b>（3 星及以上酒店）。</p>
+    <p>· <b>小费</b>：非强制，服务好多给 PHP 20–100，船工与导潜的小费另计且受欢迎。</p>
+  </div>
+
+  <div class="tip">
+    <div class="tip-h">🚐 当地交通</div>
+    <p>· <b>机场↔镇</b>：拼面包车 PHP 180–200/人（30–45 分钟）；包车约 PHP 2,300–2,800（6–10 人）；三轮车 PHP 250–300（1–2 人）。</p>
+    <p>· <b>镇内</b>：步行基本够用，三轮车单程约 PHP 30–100。<b>租摩托约 USD 10/天</b>，去温泉、观景台方便（需国际驾照或本地驾照，注意安全）。</p>
+    <p>· <b>出海</b>：全部靠螃蟹船（bangka），从镇码头出发，潜水船程 20–60 分钟。</p>
+    <p>· <b>马尼拉转机</b>：国际段多落 T3，国内段分布在 T2/T3/T4，<b>换航站楼务必留 3 小时以上</b>。</p>
+  </div>
+
+  <div class="tip">
+    <div class="tip-h">☀️ 天气与穿搭</div>
+    <p>· <b>气温</b>：常年 27–31°C，水温 27–30°C，9 月白天约 29–31°C，降雨量约 190 mm（湿季高峰）。</p>
+    <p>· <b>穿着</b>：短袖短裤为主，备<b>轻薄速干 + 一件防水外套</b>（湿季阵雨说来就来）。<b>3 mm 湿衣足够</b>，一天多潜可备 5 mm。</p>
+    <p>· <b>必备</b>：<b>礁友好防晒霜</b>（普通防晒伤珊瑚）、溯溪鞋（凯央根台阶与泻湖岩壁用）、防水袋、驱蚊液、常备药（晕船药尤其重要——9 月浪大）。</p>
+  </div>
+
+  <div class="tip">
+    <div class="tip-h">📅 公共假期与预订提醒</div>
+    <p>· 菲律宾主要公共假期：元旦（1/1）、圣周／复活节（3–4 月，全年最旺）、劳动节（5/1）、独立日（6/12）、国家英雄日（8 月末）、万圣节（11/1）、圣诞节（12/25）、黎刹日（12/30）。</p>
+    <p>· <b>你的 9/20–9/28 不在中国节假日窗口内</b>，也不与菲律宾主要长假重叠，客流与房价压力小——这是选 9 月的一个隐藏好处。</p>
+    <p>· 但湿季<b>运力本身受限</b>：布桑加航线班次少，仍建议<b>提前 4–8 周订机票，并尽早订住宿</b>。淡季房源充足，价格也有优势。</p>
+  </div>
+
+  <div class="tip">
+    <div class="tip-h">🌏 文化与礼仪</div>
+    <p>· 科隆岛属 <b>Tagbanua 原住民祖传领地</b>，神圣区域规则严格：不喧哗、不跳岩、不带走贝壳石头，遵守导览规定。</p>
+    <p>· 菲律宾整体英语普及度高，科隆旅游业沟通无障碍。</p>
+    <p>· 菲律宾服务文化友好但节奏偏慢，<b>时间观念较松散</b>，出海集合请自己盯紧时间。</p>
+    <p>· 尊重当地社区：拍摄人像先征得同意，进入村落着装得体。</p>
+  </div>
+
+  <div class="tip">
+    <div class="tip-h">🆘 安全与应急</div>
+    <p>· 科隆镇治安总体良好，夜间勿单独去偏僻区域，财物分开存放。</p>
+    <p>· <b>紧急电话</b>：警察 911（全国统一）、消防 911、救护 911；旅游警察可询当地。中国驻菲律宾大使馆领事保护：+63-2-82311033。</p>
+    <p>· <b>保险</b>：务必含<b>潜水意外与高压氧舱</b>保障及医疗转运。<b>DAN</b>（Divers Alert Network）或 <b>DiveAssure</b> 是潜水员常用选择。</p>
+    <p>· 出海前确认船上有氧气与急救包——正规潜店都会配。</p>
+  </div>
+
+  <div class="hr"></div>
+</section>
+<section id="unscheduled">
+  <div class="sec-num">MODULE 07</div>
+  <h2 class="sec-h">未安排的景点清单 Unscheduled</h2>
+  <p class="sec-intro">以下是有真实价值、但没排进上面 9 天主线的地方，都在当天活动范围约 30 km 内。勾选你感兴趣的，点底部按钮会生成一段可直接粘回 AI 的<b>行程调整请求</b>，让 AI 重新排一版含这些点的行程。</p>
+
+  <div class="unsch" data-name="Culion Island 库利昂岛" data-dist="距科隆镇约 25 km" data-dur="约半天–1 天" data-link="https://www.google.com/maps/search/?api=1&query=Culion%20Island%20Palawan" data-reason="需包船往返，与潜水日冲突">
+    <div class="unsch-head">
+      <input type="checkbox" onchange="unschToggle(this)">
+      <div>
+        <div class="unsch-name">库利昂岛 <span class="card-local">Culion Island</span></div>
+        <div class="unsch-meta">距科隆镇约 25 km · 约半天–1 天行程</div>
+      </div>
+    </div>
+    <p class="card-p">曾是世界最大的麻风病隔离区，如今留有殖民时期医院遗址与博物馆，环岛珊瑚礁<b>人少、原始、未被商业化</b>，是科隆周边最被低估的潜点区。</p>
+    <p class="card-p tight"><span class="tag">历史 + 潜水</span><span class="tag">小众</span> <span class="warn">未排入原因</span>：需单独包船往返，与主线的沉船潜日程冲突。</p>
+  </div>
+
+  <div class="unsch" data-name="Calauit 野生动物保护区" data-dist="距科隆镇约 45 km" data-dur="约 1 天" data-link="https://www.google.com/maps/search/?api=1&query=Calauit%20Island%20Busuanga" data-reason="往返车+船耗时过长">
+    <div class="unsch-head">
+      <input type="checkbox" onchange="unschToggle(this)">
+      <div>
+        <div class="unsch-name">Calauit 野生动物保护区 <span class="card-local">Calauit Safari Park</span></div>
+        <div class="unsch-meta">距科隆镇约 45 km · 约 1 天</div>
+      </div>
+    </div>
+    <p class="card-p">1970 年代从肯尼亚引入的长颈鹿、斑马、羚羊在岛上自由繁衍，乘吉普车游览，是菲律宾非常罕见的一处「非洲感」保护区。</p>
+    <p class="card-p tight"><span class="price">跟团约 PHP 1,800–3,000/人</span>（含接送与门票）</p>
+    <p class="card-p tight"><span class="warn">未排入原因</span>：单程车+船常超 2 小时，要占掉完整一天，性价比取决于你是否想换换水下以外的风景。已作为 Day 8 机动日的备选 B。</p>
+  </div>
+
+  <div class="unsch" data-name="Malcapuya 岛" data-dist="距科隆镇约 35 km" data-dur="约半天" data-link="https://www.google.com/maps/search/?api=1&query=Malcapuya%20Island%20Palawan" data-reason="与主线跳岛重复度较高">
+    <div class="unsch-head">
+      <input type="checkbox" onchange="unschToggle(this)">
+      <div>
+        <div class="unsch-name">马尔卡普亚岛 <span class="card-local">Malcapuya Island</span></div>
+        <div class="unsch-meta">距科隆镇约 35 km · 约半天</div>
+      </div>
+    </div>
+    <p class="card-p">科隆周边最出名的白沙岛之一，长滩 + 清澈浅水，是标准的「躺平型」海岛，浮潜条件也不错。</p>
+    <p class="card-p tight"><span class="warn">未排入原因</span>：与 Day 7 的跳岛动线重复度较高，属于「如果想把跳岛日换个更安静的白沙岛」的替代项。</p>
+  </div>
+
+  <div class="unsch" data-name="Black Island 黑岛（Malajon）" data-dist="距科隆镇约 40 km" data-dur="约半天–1 天" data-link="https://www.google.com/maps/search/?api=1&query=Black%20Island%20Malajon%20Busuanga" data-reason="船程较远，只在天气好时值当">
+    <div class="unsch-head">
+      <input type="checkbox" onchange="unschToggle(this)">
+      <div>
+        <div class="unsch-name">黑岛 <span class="card-local">Black Island (Malajon)</span></div>
+        <div class="unsch-meta">距科隆镇约 40 km · 约半天–1 天</div>
+      </div>
+    </div>
+    <p class="card-p">白色沙滩配上黑色石灰岩悬崖，岛上有可探索的洞穴，游客比科隆岛少得多，适合想要「安静一天」的人。</p>
+    <p class="card-p tight"><span class="warn">未排入原因</span>：船程较远，湿季海况下出航不确定性高，只在天气窗口好时值得专程。</p>
+  </div>
+
+  <div class="unsch" data-name="Sangat Island" data-dist="距科隆镇约 10 km" data-dur="约半天" data-link="https://www.google.com/maps/search/?api=1&query=Sangat%20Island%20Coron" data-reason="住宿型离岛，非一日游首选">
+    <div class="unsch-head">
+      <input type="checkbox" onchange="unschToggle(this)">
+      <div>
+        <div class="unsch-name">桑加特岛 <span class="card-local">Sangat Island</span></div>
+        <div class="unsch-meta">距科隆镇约 10 km · 约半天</div>
+      </div>
+    </div>
+    <p class="card-p">离科隆镇最近的离岛度假地之一，<b>Morazan Maru 沉船几乎就在岛下</b>，是「住在潜点上方」的典型选择，岛上另有天然温泉。</p>
+    <p class="card-p tight"><span class="warn">未排入原因</span>：本质是住宿型离岛（度假村），不适合当作一日游顺路点；若你想在行程中换一晚海边住宿，可作为备选。</p>
+  </div>
+
+  <button class="gen-btn" onclick="genPrompt()">生成编辑行程文字</button>
+  <textarea id="prompt-out" readonly placeholder="勾选上面的景点后，点上方按钮生成可直接复制给 AI 的调整请求。"></textarea>
+  <button class="copy-btn" onclick="copyPrompt()">复制</button>
+
+  <div class="hr"></div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <p><b>科隆 9 天 8 晚 · 沉船潜水手册</b>　2026.09.20–09.28 ｜ 深圳出发 ｜ AOW 持证 ｜ 单人</p>
+  <p style="margin-top:8px">配图来源：Pexels（License 可商用，部分为<b>主题示意图</b>，非该地点实拍）。价格、开放时间与评分为编制时查询值，动态变化快，<b>均以官方／门店／平台实时公示为准</b>。</p>
+  <p style="margin-top:8px"><b>数据来源</b>：菲律宾移民局 Operations Order No. 2026-001（14 天免签）；菲外交部 FSC No. 2026-005；eTravel 官方 FAQ；PAGASA 热带气旋公告；Google Maps 评分；Trip.com / Agoda 房价参考；Corto Divers、Sea Dive、Reggae Dive Center、Neptune Dive Center 公开资料；PANA、Philippine Dives、Busuanga.org 等目的地资料。</p>
+  <p style="margin-top:8px"><span class="warn">出海与潜水受天气影响极大，请以出行前官方与潜店当日判断为准。安全永远优先于行程完整。</span></p>
+</footer>
+
+<script>
+// ── 导航深链模块（regional: international → Google > 苹果）────────
+var NAV_REGION = 'international';
+var NAV_UA = (navigator.userAgent || '').toLowerCase();
+var NAV_IN_WEBVIEW = /micromessenger|xhs|xhsdiscover|discover\/|tiktok|aweme|weibo|qq\/|qqbrowser|alipayclient|dingtalk|lark|feishu|ucbrowser|baiduboxapp|toutiao|newsarticle/.test(NAV_UA);
+var NAV_IS_IOS = /ipad|iphone|ipod/.test(NAV_UA);
+var NAV_IS_MOBILE = /android|iphone|ipad|ipod|mobile/.test(NAV_UA);
+
+function navGoogleApp(n){ return 'comgooglemaps://?q=' + encodeURIComponent(n); }
+function navGoogleWeb(n){ return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(n); }
+function navApple(n, la, ln){ return 'https://maps.apple.com/?q=' + encodeURIComponent(n) + '&ll=' + la + ',' + ln; }
+
+var NAV_PROVIDERS = {
+  google: { app: function(n){ return navGoogleApp(n); }, web: function(n){ return navGoogleWeb(n); } },
+  apple:  { app: null, web: navApple }
+};
+var NAV_CHAIN = ['google', 'apple'];
+
+function navTryScheme(url, timeout){
+  return new Promise(function(resolve){
+    var settled = false;
+    function onHide(){ if(!settled){ settled = true; cleanup(); resolve(true); } }
+    function cleanup(){
+      document.removeEventListener('visibilitychange', onHide);
+      window.removeEventListener('pagehide', onHide);
+    }
+    document.addEventListener('visibilitychange', onHide);
+    window.addEventListener('pagehide', onHide);
+    window.location.href = url;
+    setTimeout(function(){ if(!settled){ settled = true; cleanup(); resolve(false); } }, timeout || 1800);
+  });
+}
+
+function openVenueNav(name, lat, lng, webLink){
+  if(!lat || !lng){ window.open(webLink || navApple(name, 0, 0)); return; }
+  var first = NAV_PROVIDERS[NAV_CHAIN[0]];
+  if(NAV_IN_WEBVIEW || !NAV_IS_MOBILE){ window.open(first.web(name, lat, lng)); return; }
+  (function step(i){
+    if(i >= NAV_CHAIN.length){ window.open(first.web(name, lat, lng)); return; }
+    var p = NAV_PROVIDERS[NAV_CHAIN[i]];
+    if(!p.app){ window.open(p.web(name, lat, lng)); return; }
+    navTryScheme(p.app(name, lat, lng)).then(function(opened){ if(!opened) step(i + 1); });
+  })(0);
+}
+
+// ── 第 7 模块：编辑行程提示词生成 ──────────────────────────────
+function unschToggle(cb){
+  var box = cb.closest('.unsch');
+  if(cb.checked){ box.classList.add('sel'); } else { box.classList.remove('sel'); }
+}
+
+function genPrompt(){
+  var out = document.getElementById('prompt-out');
+  var boxes = document.querySelectorAll('.unsch input[type=checkbox]:checked');
+  if(boxes.length === 0){
+    out.value = '请先在上方勾选至少一个想加入的景点，再点此按钮。';
+    out.focus(); out.select();
+    return;
+  }
+  var lines = [];
+  lines.push('【行程调整请求】');
+  lines.push('这是一份已生成的手册《科隆 9 天 8 晚 · 沉船潜水手册》（2026.09.20–09.28，深圳出发，单人，持 AOW 证）。');
+  lines.push('请把以下我勾选的景点合理安排进现有行程，并重新生成一份完整的 7 模块 HTML 旅行手册。');
+  lines.push('');
+  lines.push('▍基本信息');
+  lines.push('· 目的地：菲律宾 科隆 / 布桑加（Coron, Busuanga, Palawan）');
+  lines.push('· 天数：9 天 8 晚（09/20 出发 – 09/28 返回），主体为沉船潜水');
+  lines.push('· 受众：单人自由行，持 PADI AOW 证，中国年轻旅客');
+  lines.push('· 默认时间盒：08:00 出发，午餐 13:00–14:30，一天最晚 22:00–24:00 结束');
+  lines.push('· 硬约束：14 天免签仅限马尼拉 NAIA / 宿务 MCIA 入境，不可延期；9 月为台风季峰值，需保留缓冲');
+  lines.push('');
+  lines.push('▍当前每日主题');
+  lines.push('Day1 抵达·深圳→马尼拉中转');
+  lines.push('Day2 马尼拉→布桑加→科隆镇安顿 + 温泉');
+  lines.push('Day3 潜水日① 浅水沉船热身（Lusong Gunboat / Skeleton Wreck / Siete Pecados）');
+  lines.push('Day4 潜水日② 大船 Okikawa Maru + Olympia Maru + Mt. Tapyas 日落');
+  lines.push('Day5 潜水日③ Akitsushima + Kogyo Maru (+ 可选 Irako 深潜)');
+  lines.push('Day6 潜水日④ Barracuda Lake 温跃层 + Morazan Maru');
+  lines.push('Day7 非潜日·Coron Island 跳岛（Kayangan Lake / Twin Lagoon）');
+  lines.push('Day8 机动日（补潜 / 北线 Calauit / 休整）');
+  lines.push('Day9 返程·布桑加→马尼拉→深圳');
+  lines.push('');
+  lines.push('▍我要加入的景点');
+  boxes.forEach(function(b, i){
+    var box = b.closest('.unsch');
+    lines.push((i + 1) + '. ' + box.dataset.name +
+      '　｜ ' + box.dataset.dist +
+      '　｜ 建议时长：' + box.dataset.dur +
+      '　｜ 地图：' + box.dataset.link +
+      '　｜ 未排入原因：' + box.dataset.reason);
+  });
+  lines.push('');
+  lines.push('▍指令');
+  lines.push('请把以上景点合理安排进某一天。若原行程时间不够，请明确提示「可在第 X 天增加一日安排」，');
+  lines.push('或建议压缩／调整其他某天的哪些景点（说明具体改哪一天、去掉什么），再重新生成完整的 7 模块 HTML 手册。');
+  lines.push('注意保持：① 模块 1 行程只写片区、不写店名；② 模块 4 餐饮住宿必须点名到具体门店；');
+  lines.push('③ 潜水日与跳岛日之间遵守 18–24 小时飞行/潜水间隔；④ 保留 9 月台风季的缓冲与诚实风险提示。');
+  out.value = lines.join('\n');
+  out.focus();
+  out.select();
+}
+
+function copyPrompt(){
+  var out = document.getElementById('prompt-out');
+  if(!out.value){ out.focus(); return; }
+  out.select();
+  out.setSelectionRange(0, 99999);
+  try{
+    document.execCommand('copy');
+    var btn = event.target;
+    var old = btn.textContent;
+    btn.textContent = '✓ 已复制';
+    setTimeout(function(){ btn.textContent = old; }, 1600);
+  }catch(e){}
+}
+
+// ── 导航高亮 ────────────────────────────────────────────────
+(function(){
+  var links = document.querySelectorAll('.topnav a');
+  var secs = [];
+  links.forEach(function(a){
+    var el = document.querySelector(a.getAttribute('href'));
+    if(el) secs.push({ a: a, el: el });
+  });
+  function sync(){
+    var y = window.scrollY + 90, cur = secs[0];
+    secs.forEach(function(s){ if(s.el.offsetTop <= y) cur = s; });
+    links.forEach(function(a){ a.classList.remove('on'); });
+    if(cur) cur.a.classList.add('on');
+  }
+  window.addEventListener('scroll', sync, { passive: true });
+  sync();
+})();
+</script>
+</body>
+</html>
